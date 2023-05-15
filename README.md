@@ -2,9 +2,8 @@
 A mobile android gps app that helps California State University students and faculty locate useful campus resources. 
 
 #### v1 Version 1
-- Simply displays a map
-
-1. Does not include my API key, API key can be found in v2. 
+- Simply displays a map 
+- Does not include my API key, API key can be found in v2. 
 
 #### v2 Version 2
 
