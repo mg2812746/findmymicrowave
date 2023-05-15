@@ -24,7 +24,7 @@ Functionality: Displays a web scene of CSUSB campus
 2. It appears that we cannot simply display all the represented data that Zack made with his published web scene. We may have to manually input the same layers that zack used for his design inside of our code.
 
 #### Current Issues
-- Add microwave layer to map, and maybe include an option to view an image of the microwave's physical location. 
+- Add microwave layer to map, and maybe include an option to view an image of the microwave's physical location.
 - Add feature to include user's location and create a path from user to each microwave. 
 
 #### Documentation Needed To Complete
