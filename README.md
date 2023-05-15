@@ -1,6 +1,9 @@
 # Find My Microwave
 A mobile android gps app that helps California State University students and faculty locate useful campus resources. 
 
+#### Environment
+- This app is created using Android Studio
+
 #### Emulator Configurations
 - The app successfully runs with emulator configurations using API 33 on Pixel 6. 
 - Once you launch the emulator, click on the ... on the far right of the emulator hud. It will launch another window with extended controls for the phone emulator. Under settings, use "Desktop native OpenGL" for OpenGL ES render and "Renderer maximum (up to OpenGL ES 3.1) for OpenGL API level. 
