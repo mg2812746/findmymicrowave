@@ -27,4 +27,8 @@ Functionality: Displays a web scene of CSUSB campus
 - Add microwave layer to map, and maybe include an option to view an image of the microwave's physical location. 
 - Add feature to include user's location and create a path from user to each microwave. 
 
-
+#### Documentation Needed To Complete
+1. SRS Doc - Update what we have to fit this iteration
+2. SMNP - Update what we have to fit this iteration
+3. Instruction Manual - Screenshots of working app with description. 
+4. Maintenance Manual - Details file structure and file description. 
