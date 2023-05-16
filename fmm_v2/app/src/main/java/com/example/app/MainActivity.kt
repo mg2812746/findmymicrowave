@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
             Portal(portal),
             itemId = "bb69f10baf334d4c935a0fb23d758f38"
         )
+        /*
         val locationDisplay = sceneView.locationDisplay
 
         lifecycleScope.launch {
@@ -85,8 +86,8 @@ class MainActivity : AppCompatActivity() {
                 }.onFailure {
                     // check permissions to see if failure may be due to lack of permissions
                     requestPermissions()
-                }
-        }
+                }*/
+
         val featureLayer1 = FeatureLayer.createWithFeatureTable(
             ServiceFeatureTable("https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer)")
         )
@@ -99,18 +100,9 @@ class MainActivity : AppCompatActivity() {
             ServiceFeatureTable("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/MSBFP2/FeatureServer/0")
         )
         val featureLayer4 = FeatureLayer.createWithItem(microBuildingFootprints)
-        scene.operationalLayers.addAll(
-            listOf(
-                featureLayer1,
-                featureLayer2,
-                featureLayer3,
-                featureLayer4
-            )
-        )
-
+        scene.operationalLayers.addAll(listOf(featureLayer1,featureLayer2,featureLayer3,featureLayer4))
         sceneView.scene = scene
-
-    }
+        }
 
     /**
      * Request fine and coarse location permissions for API level 23+.
