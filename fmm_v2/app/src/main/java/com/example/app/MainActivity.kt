@@ -13,11 +13,16 @@ import androidx.databinding.DataBindingUtil
 import com.arcgismaps.ApiKey
 import com.arcgismaps.ArcGISEnvironment
 import com.arcgismaps.mapping.ArcGISScene
+import com.arcgismaps.mapping.ArcGISTiledElevationSource
 import com.arcgismaps.mapping.view.SceneView
 import com.arcgismaps.portal.Portal
 import com.arcgismaps.mapping.PortalItem
 import com.arcgismaps.mapping.layers.ArcGISSceneLayer
-import com.arcgismaps.mapping.layers.FeatureLayer
+import com.arcgismaps.geometry.Point
+import com.arcgismaps.geometry.SpatialReference
+import com.arcgismaps.mapping.Surface
+import com.arcgismaps.mapping.view.SurfacePlacement
+import com.arcgismaps.mapping.layers.Layer
 import com.example.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         setupScene()
 
-        // loadPortalItem()
+
 
     }
 
@@ -54,46 +59,42 @@ class MainActivity : AppCompatActivity() {
 
     // set up your scene here. You will call this method from onCreate()
     private fun setupScene() {
-
+        // Define portal url and id of item we want to load
         val portal = Portal("https://www.arcgis.com", Portal.Connection.Anonymous)
-
         val itemId = "46785ddf3cb346e79af22caf599cac4d"
         val portalItem = PortalItem(portal, itemId)
 
         val scene = ArcGISScene(portalItem)
-
+        val elevationSource = ArcGISTiledElevationSource("https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer")
+        val surface = Surface().apply{
+            elevationSources.add(elevationSource)
+        }
         // set the scene on the scene view
+
+        scene.baseSurface = surface
+        scene.apply{
+            val lyonBuildingsLayer = ArcGISSceneLayer(
+                PortalItem(Portal.arcGISOnline(Portal.Connection.Anonymous), "ca0470dbbddb4db28bad74ed39949e25")
+            ). apply {
+                surfacePlacement = SurfacePlacement.Absolute
+                altitudeOffset = 6.0
+            }
+            operationalLayers.add(lyonBuildingsLayer)
+        }
+
         sceneView.scene = scene
 
     }
-    /*
-     * Sets the map using the [layer] at the given [viewpoint]
-     */
-    private fun setFeatureLayer(layer: FeatureLayer) {
-        activityMainBinding.sceneView.apply {
-            // adds the new layer to the map
-            // sceneView.buildLayer(layer)
-        }
-    }
+    // set up your scene here. You will call this method from onCreate()
+    private fun addLayer() {
+        // Define portal url and id of item we want to load
+        val portal = Portal("https://www.arcgis.com", Portal.Connection.Anonymous)
+        val itemId = "46785ddf3cb346e79af22caf599cac4d"
+        val portalItem = PortalItem(portal, itemId)
 
-    private fun loadPortalItem() {
-        // set the portal
-        val portal = Portal("https://www.arcgis.com")
-        // create the portal item with the item ID for the Portland tree service data
-        val portalItem = PortalItem(portal, "ca0470dbbddb4db28bad74ed39949e25")
-        try{
-            // create the feature layer with the item
-            val featureLayer = FeatureLayer.createWithItem(portalItem)
-            // set the feature layer on the map
-        }
-        catch(ex: Exception){
-            showError("Error loading portal item:")
-        }
-    }
+        val layer = ArcGISSceneLayer(portalItem)
 
-    private fun showError(message: String) {
-        Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
-        Log.e(localClassName, message)
-    }
 
+
+    }
 }
