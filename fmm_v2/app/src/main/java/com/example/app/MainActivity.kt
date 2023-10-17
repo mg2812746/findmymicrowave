@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         // Note: it is not best practice to store API keys in source code. The API key is referenced
         // here for the convenience of this tutorial.
 
-        ArcGISEnvironment.apiKey = ApiKey.create("AAPK7069ae50d8e14ab0a5f7e1ccc895cd55M5cijDKp0-Da0KbzF0Cuy1GsNvLpGyu1Rv22L-VT9pPjoCZp_4qRXmI5tj7a6XTP")
+        ArcGISEnvironment.apiKey = ApiKey.create("")
 
     }
 
